@@ -89,5 +89,3 @@ function playGame(){
 const TIE = 0;
 const COMP_WIN = 1;
 const PLAYER_WIN = 2;
-
-playGame(); 
