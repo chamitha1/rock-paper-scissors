@@ -5,15 +5,22 @@ body{
     align-items: center;
 }
 
+p{
+    margin:7px;
+}
+
 .display{
-    background-color: #AD88C6;
-    margin: 30px;
     display: flex;
+    flex-direction: column;
     justify-content:center;
     align-items: center;
+
+    background-color: #AD88C6;
+    margin: 30px;
+    padding:15px;
     border:5px solid #AD88C6 ;
-    width:200px;
-    height:80px;
+    width:250px;
+    height:100px;
     color:white;
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
