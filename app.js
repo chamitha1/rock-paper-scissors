@@ -43,48 +43,62 @@ function getPlayerChoice(){
     return playerChoice;
 }
 
-function playGame(){
-    let count = 1;
-    let playerScore = 0;
-    let compScore = 0;
+const btn_rock = document.querySelector("#rock");
+const btn_paper = document.querySelector("#paper");
+const btn_scissors = document.querySelector("#scissor");
 
-    while(count <= 5){
-        let playerChoice = getPlayerChoice();
-        let compChoice = getComputerChoice();
+const display = document.querySelector(".display");
 
-        let roundWin = playRound(playerChoice, compChoice);
-
-        switch(roundWin){
-            case 0:
-                console.log("It's a Tie!");
-                break;
-            case 1:
-                console.log("You Lose! " + compChoice + " beats " + playerChoice + "!");
-                compScore++;
-                break;
-            case 2:
-                console.log("You Win! " + playerChoice + " beats " + compChoice + "!")
-                playerScore++;
-                break;
-            default:
-                console.log("Invalid choice");
-                continue;
-        }
-
-        count++;
+btn_rock.addEventListener("click" , () =>{
+    let result = playRound(btn_rock.id, getComputerChoice());
+    switch(result){
+        case 0:
+            display.textContent = "TIE";
+            break;
+        case 1:
+            display.textContent = "Computer WIN";
+            break;
+        case 2:
+            display.textContent = "Player WIN";
+            break;
+        default:
+            console.log("Error");
     }
+});
 
-    if(playerScore === compScore){
-        console.log("");
-        console.log("You scored " +playerScore +". Computer scored "+compScore+". \nGame's a tie!");
-    }else if(playerScore > compScore){
-        console.log("");
-        console.log("You scored " +playerScore +". Computer scored "+compScore+". \nYou won the game!");
-    }else{
-        console.log("");
-        console.log("You scored " +playerScore +". Computer scored "+compScore+". \nYou lost the game...");
+btn_paper.addEventListener("click" , () =>{
+    let result = playRound(btn_rock.id, getComputerChoice());
+    switch(result){
+        case 0:
+            display.textContent = "TIE";
+            break;
+        case 1:
+            display.textContent = "Computer WIN";
+            break;
+        case 2:
+            display.textContent = "Player WIN";
+            break;
+        default:
+            console.log("Error");
     }
-}
+});
+
+btn_scissors.addEventListener("click" , () =>{
+    let result = playRound(btn_scissors.id, getComputerChoice());
+    switch(result){
+        case 0:
+            display.textContent = "TIE";
+            break;
+        case 1:
+            display.textContent = "Computer WIN";
+            break;
+        case 2:
+            display.textContent = "Player WIN";
+            break;
+        default:
+            console.log("Error");
+    }
+});
 
 const TIE = 0;
 const COMP_WIN = 1;
