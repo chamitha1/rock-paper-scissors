@@ -44,43 +44,46 @@ function getPlayerChoice(){
     return playerChoice;
 }
 
-function scoreCount(result){
+function setScore(result){
+    //score increment
+    if(result === 1){
+        computerScore++;
+    }
+    if(result === 2){
+        playerScore++;
+    }
+    //changing scores
+    switch(result){
+        case 0:
+            break;
+        case 1:
+            score_comp.textContent = computerScore;
+            break;
+        case 2:
+            score_player.textContent = playerScore;
+            break;
+        default:
+    }
     
-    if(result === 0){ //TIE
-        return;
-    }
-    if(result === 1 ){ //Computer WIN
-        return compScore++;
-    }
-    if(result === 2){ //Player WIN
-        return playerScore++;
-    }
-}
-
-function scoreCheck(compScore, playerScore){
-    if(compScore > 4){
-        display.textContent = "COMPUTER WON THE GAME!!";
-        //reset score
-        compScore = 0;
+    //resetting scores and announcing winner
+    if(computerScore > 4){
+        computerScore = 0;
         playerScore = 0;
-        score_comp.textContent = 0;
-        score_player.textContent = 0;
+        display.textContent = "COMPUTER WON THE GAME!!";
+        score_player.textContent = playerScore;
+        score_comp.textContent = computerScore;
     }
     if(playerScore > 4){
-        display.textContent = "PLAYER WON THE GAME!!";
-        //reset score
-        compScore = 0;
+        computerScore = 0;
         playerScore = 0;
-        score_comp.textContent = 0;
-        score_player.textContent = 0;
-
+        display.textContent = "PLAYER WON THE GAME!!";
+        score_player.textContent = playerScore;
+        score_comp.textContent = computerScore;
     }
+    
 }
 
 //app
-
-let compScore = 0;
-let playerScore = 0;
 
 const btn_rock = document.querySelector("#rock");
 const btn_paper = document.querySelector("#paper");
@@ -94,30 +97,28 @@ const TIE = 0;
 const COMP_WIN = 1;
 const PLAYER_WIN = 2;
 
+let computerScore = 0;
+let playerScore = 0;
 
 btn_rock.addEventListener("click" , () =>{
     let result = playRound(btn_rock.id, getComputerChoice());
+ 
     switch(result){
         case 0:
             display.textContent = "TIE";
-            scoreCount(0);
-            scoreCheck(compScore, playerScore);
             break;
         case 1:
             display.textContent = "Computer WIN";
-            scoreCount(1);
-            scoreCheck(compScore, playerScore);
-            score_comp.textContent = compScore;
             break;
         case 2:
             display.textContent = "Player WIN";
-            scoreCount(2);
-            scoreCheck(compScore, playerScore);
-            score_player.textContent = playerScore;
             break;
         default:
             console.log("Error");
     }
+  
+    setScore(result);
+
 });
 
 btn_paper.addEventListener("click" , () =>{
@@ -135,6 +136,8 @@ btn_paper.addEventListener("click" , () =>{
         default:
             console.log("Error");
     }
+    setScore(result);
+
 });
 
 btn_scissors.addEventListener("click" , () =>{
@@ -152,5 +155,7 @@ btn_scissors.addEventListener("click" , () =>{
         default:
             console.log("Error");
     }
+    setScore(result);
+
 });
 
